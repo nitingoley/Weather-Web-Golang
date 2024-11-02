@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Web Application</title>
+</head>
+<body>
+    <h1>Weather Application</h1> 
+
+    <form id="weatherForm">
+        <input type="text" id="city" placeholder="Enter city">
+        <button type="submit">Get Weather</button>
+    </form>
+    <div id="weatherResult">
+        <script>
+            document.getElementById('weatherForm').onsubmit = async function(e) {
+                e.preventDefault();
+                const city = document.getElementById("city").value;
+                const response = await fetch(`/weather/${city}`);
+                const data = await response.json();
+                document.getElementById("weatherResult").innerHTML = JSON.stringify(data);
+            }
+        </script>
+    </div>
+</body>
+</html>
